@@ -1,0 +1,44 @@
+basePath: /api
+definitions:
+  errors_handler.ErrorResponse:
+    properties:
+      error:
+        type: string
+      localized_error:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: API Server for platform telegram bot [duirole]
+  title: Duirole platform API
+  version: "1.0"
+paths:
+  /v1/test1:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "401":
+          description: Unauthorized
+          schema:
+            type: integer
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors_handler.ErrorResponse'
+      summary: Test handler
+      tags:
+      - PlatformService
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
