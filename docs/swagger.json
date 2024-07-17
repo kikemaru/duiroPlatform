@@ -42,6 +42,50 @@
                     }
                 }
             }
+        },
+        "/v1/{app_key}/temp_token": {
+            "get": {
+                "description": "Получение временного токена для бота по ключу. Жизнь токена ограничена 24 часами.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "PlatformService"
+                ],
+                "summary": "Получение временного токена",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "key bot application",
+                        "name": "app_key",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/errors_handler.ErrorResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {

@@ -14,6 +14,36 @@ info:
   title: Duirole platform API
   version: "1.0"
 paths:
+  /v1/{app_key}/temp_token:
+    get:
+      consumes:
+      - application/json
+      description: Получение временного токена для бота по ключу. Жизнь токена ограничена
+        24 часами.
+      parameters:
+      - description: key bot application
+        in: path
+        name: app_key
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "401":
+          description: Unauthorized
+          schema:
+            type: integer
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors_handler.ErrorResponse'
+      summary: Получение временного токена
+      tags:
+      - PlatformService
   /v1/test1:
     get:
       consumes:

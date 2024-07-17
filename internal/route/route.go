@@ -32,6 +32,7 @@ func (route *Routes) Setup() {
 		{
 			route.log.Info().Msg("setting up handlers routes")
 			r.Get("/test1", route.i.Test())
+			r.Get("/{app_key}/temp_token", route.i.GetTempToken())
 		}
 	})
 
