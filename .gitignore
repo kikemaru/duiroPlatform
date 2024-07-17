@@ -1,0 +1,6 @@
+.idea/.gitignore
+.idea/modules.xml
+.idea/schedule.iml
+.idea/vcs.xml
+*.DS_Store
+./deployment
