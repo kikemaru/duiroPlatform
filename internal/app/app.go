@@ -20,6 +20,7 @@ import (
 	"github.com/kikemaru/duiroPlatform/pkg/logger"
 )
 
+// Run - application
 func Run() {
 	logger, err := logger.NewZerologLogger()
 	if err != nil {
