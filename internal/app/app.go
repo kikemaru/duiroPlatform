@@ -14,6 +14,7 @@ import (
 	"github.com/kikemaru/duiroPlatform/internal/app/handler"
 	"github.com/kikemaru/duiroPlatform/internal/repository"
 	"github.com/kikemaru/duiroPlatform/internal/route"
+	"github.com/kikemaru/duiroPlatform/internal/service"
 	"github.com/kikemaru/duiroPlatform/internal/utils"
 	chi_router "github.com/kikemaru/duiroPlatform/pkg/chi"
 	"github.com/kikemaru/duiroPlatform/pkg/httpserver"
@@ -41,7 +42,13 @@ func Run() {
 			logger.Error().Err(err).Msg("error close database")
 		}
 	}()
-	platformService := handler.NewPlatformService(logger)
+
+	tokenService := service.NewTokenService(logger)
+
+	platformService := handler.NewPlatformService(
+		logger,
+		tokenService,
+	)
 
 	router := chi.NewRouter()
 	handlers := route.NewRoutes(logger, router, platformService)

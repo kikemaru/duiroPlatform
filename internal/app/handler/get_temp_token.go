@@ -21,6 +21,7 @@ import (
 func (i *Implementation) GetTempToken() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		key := chi.URLParam(r, "app_key")
+		i.tokenService.GetTempToken()
 		if err := utils.Json(w, http.StatusOK, key); err != nil {
 			i.Log.Error().Err(err)
 		}
